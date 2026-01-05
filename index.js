@@ -1,27 +1,13 @@
 const express = require("express");
 const app = express();
 
-app.get("/products",(req,res)=>{
-    res.send("Here is the list of all products.");
+
+app.get("/welcome/:username",(req,res)=>{
+    const user = req.params.username;
+    const role = req.query.role || "Guest"; // default value dene se undefined ni dega agr role ni diya to
+    res.send(`Welcome ${user}, your role is ${role}`);
 })
 
-
-app.post("/products", (req,res)=>{
-    res.send("A new product has been added.")
-})
-
-app.get("/categories",(req,res)=>{
-    res.send("Here is the list of all categories.");
-})
-
-
-app.post("/categories",(req,res)=>{
-    res.send("A new category has been created.");
-})
-
-app.all("*",(req,res)=>{
-    res.status(404).send("<h1>404-Page Not Found</h1>")
-})
 
 app.listen(4000,()=>{
     console.log("server started running at 4000");
