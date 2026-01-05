@@ -1,16 +1,14 @@
 const express = require("express");
 const app = express();
-const studentRouter = require("./router/students");
-const coursesRouter = require("./router/courses");
+const productRouter = require("./router/productRoutes");
+const usersRouter = require("./router/userRoutes");
+const cartRoute = require("./router/cartRoutes");
 
 app.use(express.json());
 
-app.get("/",(req,res)=>{
-    res.send( "Welcome to the Student & Course Portal API!");
-})
-
-app.use("/students",studentRouter);
-app.use("/courses",coursesRouter);
+app.use("/students",productRouter);
+app.use("/courses",usersRouter);
+app.use("/courses",cartRoute);
 
 
 app.listen(4000,()=>{
