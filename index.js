@@ -1,19 +1,22 @@
 const express = require("express");
 const app = express();
 
-
-function addproperity(req,res,next){
-    req.user = "Guest";
-    next();
-
-}
+app.get("/orders",(req,res)=>{
+    res.send("Here is the list of all orders.");
+})
 
 
-app.get("/welcome",addproperity,(req,res)=>{
+app.post("/orders", (req,res)=>{
+    res.send("A new order has been created.")
+})
 
-    let getvalue = req.user;
-    res.send(`<h1>Welcome, ${getvalue}</h1>`);
-    
+app.get("/users",(req,res)=>{
+    res.send( "Here is the list of all users.");
+})
+
+
+app.post("/users",(req,res)=>{
+    res.send("A new user has been added.");
 })
 
 app.listen(3000,()=>{
