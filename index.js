@@ -1,33 +1,11 @@
 const express = require("express");
 const app = express();
-
-function loggingmiddleware(req,res,next){
-    const requestMethod = req.method;
-    const endpoint = req.url;
-    console.log(`${requestMethod} request made to ${endpoint}`);
-    next();
-
-}
-
-app.use(loggingmiddleware);
-
-app.get("/products", (req,res) => {
-    res.send("Here is the list of all products.");
-})
-
-app.post("/products", (req,res) => {
-    res.send("A new product has been added.")
-})
-
-app.get("/categories", (req,res)=>{
-    res.send("Here is the list of all categories.");
-})
+const productrouter = require("./router/product");
+const categoriesrouter = require("./router/categories");
 
 
-app.post("/categories", (req,res)=>{
-    res.send("A new category has been created.");
-})
-
+app.use("/product",productrouter)
+app.use("/categories",categoriesrouter)
 
 app.listen(4000,()=>{
     console.log("server started running at 4000");
