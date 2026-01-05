@@ -1,11 +1,31 @@
 const express = require("express");
 const app = express();
 
+function loggingmiddleware(req,res,next){
+    const requestMethod = req.method;
+    const endpoint = req.url;
+    console.log(`${requestMethod} request made to ${endpoint}`);
+    next();
 
-app.get("/welcome/:username",(req,res)=>{
-    const user = req.params.username;
-    const role = req.query.role || "Guest"; // default value dene se undefined ni dega agr role ni diya to
-    res.send(`Welcome ${user}, your role is ${role}`);
+}
+
+app.use(loggingmiddleware);
+
+app.get("/products", (req,res) => {
+    res.send("Here is the list of all products.");
+})
+
+app.post("/products", (req,res) => {
+    res.send("A new product has been added.")
+})
+
+app.get("/categories", (req,res)=>{
+    res.send("Here is the list of all categories.");
+})
+
+
+app.post("/categories", (req,res)=>{
+    res.send("A new category has been created.");
 })
 
 
