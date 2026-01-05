@@ -6,9 +6,9 @@ const cartRoute = require("./router/cartRoutes");
 
 app.use(express.json());
 
-app.use("/students",productRouter);
-app.use("/courses",usersRouter);
-app.use("/courses",cartRoute);
+app.use("/products",productRouter);
+app.use("/users",usersRouter);
+app.use("/cart",cartRoute);
 
 
 app.listen(4000,()=>{
