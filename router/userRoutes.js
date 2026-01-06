@@ -1,28 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const userController = require("../controllers/usercontroller");
 
 
 
-router.get("/",(req,res)=>{
-     res.send("Fetching all users");
-})
+router.get("/",userController.getallusers)
 
-router.get("/:Id",(req,res)=>{
-   const Id = req.params.Id;
-  res.send(`Fetching user with ID: id,${Id}`);
+router.get("/:Id",userController.getuserById)
 
-//    const id = parseInt(req.params.Id);
-
-//   let couseId =  courses.find(c=>c.id==id);
-//   if(!couseId){
-//        res.send("Course not found");
-//      }else{
-//         res.send(`Course: ${couseId.name}, Description: ${couseId.description}`);
-//      };
-})
-
-router.post("/",(req,res)=>{
-   res.send("Adding a new user");
-})
+router.post("/",userController.addnewUser);
 
 module.exports = router;
